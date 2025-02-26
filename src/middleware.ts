@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { isValidPassword } from './lib/isValidPassword';
+// import { isValidPassword } from './lib/isValidPassword';
 
 export async function middleware(req: NextRequest) {
   const isAuthenticated = await checkAuthentication(req);
@@ -18,8 +18,10 @@ async function checkAuthentication(req: NextRequest) {
     return false;
   }
   const [username, password] = getCredentials(authHeader);
-  console.log(username, password)
-  return username === process.env.ADMIN_USERNAME && await isValidPassword(password, process.env.HASHED_ADMIN_PASSWORD as string)
+  console.log("entered password===>", username, password);
+  console.log("process.env.ADMIN_USERNAME===>", process.env.ADMIN_USERNAME);
+  console.log("process.env.ADMIN_PASSWORD===>", process.env.ADMIN_PASSWORD);
+  return username === process.env.ADMIN_USERNAME && password, process.env.ADMIN_PASSWORD
 }
 
 function getCredentials(authHeader: string) {

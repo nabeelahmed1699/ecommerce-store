@@ -48,6 +48,7 @@ export default CheckoutForm;
   const [error, setError] = useState<string | undefined>(undefined);
   const [email, setEmail] = useState('');
 
+   console.log('stripe==>',stripe)
   const handleSubmit = async  (event: FormEvent) => {
     event.preventDefault();
     if (stripe === null || elements === null || email === '') return;
