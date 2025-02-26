@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { ComponentProps, ReactNode } from 'react';
 
-const Nav = ({ children }: { children: ReactNode }) => {
-  return <nav className='bg-primary text-primary-foreground flex justify-center px-4'>{children}</nav>;
+const Nav = ({ children, className }: { children: ReactNode; className?: string }) => {
+  return <nav className={cn('bg-primary text-primary-foreground flex justify-center px-4', className)}>{children}</nav>;
 };
 
 export default Nav;
