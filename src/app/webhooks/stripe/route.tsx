@@ -5,7 +5,6 @@ import Stripe from 'stripe';
 import { Resend } from 'resend';
 import React from 'react';
 import PurchaseReceipt from '@/email/PurchaseReceipt';
-import ReactDOMServer from 'react-dom/server';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const resend = new Resend(process.env.RESEND_API_KEY as string);
@@ -42,18 +41,14 @@ export async function POST(req: NextRequest) {
     const downloadVerification = await db.downlooadVerification.create({
       data: { productId, expiredAt: new Date(Date.now() + 1000 * 60 * 60 * 24) },
     });
-
-    // Render the JSX to HTML string
-    const htmlContent = ReactDOMServer.renderToStaticMarkup(
-      <PurchaseReceipt product={product} order={orders[0]} downloadVerificationId={downloadVerification.id} />
-    );
+    
 
     // Send the email
     await resend.emails.send({
       from: `Support <${process.env.RESEND_EMAIL}>`,
       to: email,
       subject: 'Order Confirmation',
-      html: htmlContent, // Pass HTML content instead of React component
+      react: <PurchaseReceipt product={product} order={orders[0]} downloadVerificationId={downloadVerification.id} />, // Pass HTML content instead of React component
     });
   }
 
