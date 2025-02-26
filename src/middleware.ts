@@ -18,9 +18,6 @@ async function checkAuthentication(req: NextRequest) {
     return false;
   }
   const [username, password] = getCredentials(authHeader);
-  console.log("entered password===>", username, password);
-  console.log("process.env.ADMIN_USERNAME===>", process.env.ADMIN_USERNAME);
-  console.log("process.env.ADMIN_PASSWORD===>", process.env.ADMIN_PASSWORD);
   return username === process.env.ADMIN_USERNAME && password, process.env.ADMIN_PASSWORD
 }
 

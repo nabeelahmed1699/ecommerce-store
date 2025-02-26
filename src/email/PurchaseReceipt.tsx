@@ -6,9 +6,14 @@ import OrderInformation from './_components/OrderInformation';
 interface PurchaseReceiptProps {
   product: Partial<Product>;
   order: Partial<Order>;
+  downloadVerificationId: string;
 }
 
-const PurchaseReceipt: FC<PurchaseReceiptProps> = ({ product, order }: PurchaseReceiptProps) => {
+interface PurchaseReceiptComponent extends FC<PurchaseReceiptProps> {
+  PreviewProps?: PurchaseReceiptProps;
+}
+
+const PurchaseReceipt: PurchaseReceiptComponent = ({ product, order }: PurchaseReceiptProps) => {
   return (
     <Html>
       <Preview>Dowload {product.name ? product?.name : ''} and view reciept</Preview>
@@ -37,6 +42,7 @@ PurchaseReceipt.PreviewProps = {
     createdAt: new Date(),
     priceInCents: 1000,
   },
+  downloadVerificationId: '1',
 } satisfies PurchaseReceiptProps;
 
 export default PurchaseReceipt;

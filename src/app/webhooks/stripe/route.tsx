@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import React from 'react';
 import PurchaseReceipt from '@/email/PurchaseReceipt';
 import ReactDOMServer from 'react-dom/server';
 
