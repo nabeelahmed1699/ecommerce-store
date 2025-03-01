@@ -3,6 +3,5 @@
     "env": {
       "DATABASE_URL": "file:./prisma/database.sqlite"
     }
-  },
-  "includeFiles": ["prisma/database.sqlite"]
+  }
 }
