@@ -4,7 +4,7 @@ import ProductForm from '../../new/_components/ProductForm';
 import db from '@/db/db';
 
 interface EditProductPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const EditProductPage = async ({ params }: EditProductPageProps) => {

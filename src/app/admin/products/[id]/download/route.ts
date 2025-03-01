@@ -5,8 +5,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
-export async function GET(req: NextRequest, { params: { id } }: { params: { id: string } }) {
+type Params = { params: Promise<{ id: string }> };
+
+export async function GET(req: NextRequest, { params }: Params) {
   // Fetch product details from the database
+  const { id } = await params;
   const product = await db.product.findUnique({
     where: { id },
     select: { name: true, filePath: true },

@@ -10,7 +10,7 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
 interface PurchaseSuccessPageProps {
-  searchParams: { payment_intent: string } 
+  searchParams: Promise<{ payment_intent: string }> 
 }
 const PurchaseSuccessPage = async ({ searchParams }: PurchaseSuccessPageProps) => {
   const { payment_intent } = await searchParams;

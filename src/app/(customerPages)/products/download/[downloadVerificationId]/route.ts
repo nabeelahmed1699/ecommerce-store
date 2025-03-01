@@ -2,13 +2,11 @@ import db from '@/db/db';
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
-
 interface Params {
-  params: { downloadVerificationId: string };
+  params: Promise<{ downloadVerificationId: string; }>;
 }
 
 export async function GET(req: NextRequest, { params }: Params) {
-  console.log("req",params)
 
   try {
     const { downloadVerificationId } = await params; 
