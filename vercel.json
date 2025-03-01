@@ -4,9 +4,5 @@
       "DATABASE_URL": "file:./prisma/database.sqlite"
     }
   },
-  "functions": {
-    "api/**/*.ts": {
-      "includeFiles": "prisma/database.sqlite"
-    }
-  }
+  "includeFiles": ["prisma/database.sqlite"]
 }
